@@ -1,50 +1,148 @@
-# Welcome to your Expo app 👋
+# 🏋️‍♂️ Calisthenics Explorer
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A mobile app built with [**Expo Router**](https://expo.dev/router) and styled using [**Tailwind CSS for React Native**](https://github.com/jaredh159/tailwindcss-react-native). This app is designed with performance and scalability in mind and includes a simple 4-page tab navigation structure.
 
-## Get started
+---
 
-1. Install dependencies
+## 📱 Tech Stack
 
-   ```bash
-   npm install
-   ```
+| Tech                  | Description                                           |
+|-----------------------|-------------------------------------------------------|
+| **Expo**              | Framework for universal React apps                   |
+| **Expo Router**       | File-based routing for Expo                          |
+| **React Native**      | Framework for building native apps with React        |
+| **TypeScript**        | Strongly typed JavaScript for better tooling         |
+| **Tailwind CSS RN**   | Utility-first styling for React Native components    |
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+## 🧠 Folder Structure (Simplified)
 
 ```bash
-npm run reset-project
+calisthenics-explorer/
+├── app/                    # Screens and routing
+│   ├── _layout.tsx         # Root layout (TailwindProvider)
+│   ├── (tabs)/             # Tab-based navigation
+│   │   ├── _layout.tsx     # Tabs layout
+│   │   ├── index.tsx       # Home
+│   │   ├── about.tsx       # About
+│   │   ├── contact.tsx     # Contact
+│   │   └── settings.tsx    # Settings
+│   └── +not-found.tsx      # 404 page
+├── components/             # UI components
+├── assets/                 # Fonts, images
+├── tailwind.config.js      # Tailwind config
+├── package.json
+└── ...
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
+## 🚀 Getting Started
 
-To learn more about developing your project with Expo, look at the following resources:
+### 1. **Install Dependencies**
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+npm install
+```
 
-## Join the community
+### 2. **Install Tailwind CSS for React Native**
 
-Join our community of developers creating universal apps.
+```bash
+npm install tailwindcss-react-native
+npx tailwindcss-react-native init
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### 3. **Configure Tailwind**
+
+In the root, create or update `tailwind.config.js`:
+
+```js
+module.exports = {
+  content: [
+    "./app/**/*.{js,jsx,ts,tsx}",
+    "./components/**/*.{js,jsx,ts,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};
+```
+
+### 4. **Run the App**
+
+```bash
+npx expo start
+```
+
+- Use the Expo Go app or an Android/iOS emulator to preview.
+
+---
+
+## 🧪 Screens Included
+
+| Screen     | Path                 | Description                |
+|------------|----------------------|----------------------------|
+| **Home**   | `/`                  | Welcome screen             |
+| **About**  | `/about`             | Info about the app         |
+| **Contact**| `/contact`           | Contact information        |
+| **Settings**| `/settings`         | App configuration/settings |
+
+All styled using `className="..."` with Tailwind utility classes via `tailwindcss-react-native`.
+
+---
+
+## ✨ Example Styling
+
+Example usage of Tailwind styling in a screen:
+
+```tsx
+import { View, Text } from 'react-native';
+import { styled } from 'tailwindcss-react-native';
+
+const Container = styled(View);
+const Title = styled(Text);
+
+export default function HomeScreen() {
+  return (
+    <Container className="flex-1 items-center justify-center bg-white">
+      <Title className="text-2xl font-bold text-blue-600">Welcome</Title>
+    </Container>
+  );
+}
+```
+
+---
+
+## 🔄 Tips for Development
+
+- Restart Expo server after Tailwind config changes:  
+  ```bash
+  npx expo start --clear
+  ```
+
+- Tailwind classes update live with Fast Refresh.
+
+---
+
+## 🛠️ Future Plans
+
+- Add navigation icons
+- Integrate async storage and user data
+- Add custom fonts and themes
+- Connect backend or Firebase
+- Offline support
+
+---
+
+## 🧑‍💻 Authors
+
+Developed by [Dirk van der Enden & Sil van Tiel]  
+Feel free to fork and contribute!
+
+---
+
+## 📜 License
+
+This project is not licensed under the MIT License.
