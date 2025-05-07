@@ -1,6 +1,15 @@
 # 🏋️‍♂️ Calisthenics Explorer
 
-A mobile app built with [**Expo Router**](https://expo.dev/router) and styled using [**Tailwind CSS for React Native**](https://github.com/jaredh159/tailwindcss-react-native). This app is designed with performance and scalability in mind and includes a simple 4-page tab navigation structure.
+A mobile app built with [**Expo Router**](https://expo.dev/router) and styled using [**Tailwind CSS for React Native**](https://github.com/jaredh159/tailwindcss-react-native). The app helps users explore calisthenics parks in the Netherlands, featuring a map with clustering, custom icons, and real-time park data from OpenStreetMap.
+
+---
+
+## 📋 Prerequisites
+
+- [Node.js](https://nodejs.org/) (v18 or higher recommended)
+- [npm](https://www.npmjs.com/) (comes with Node.js)
+- [Expo CLI](https://docs.expo.dev/get-started/installation/) (`npm install -g expo-cli`)
+- (Optional) Android Studio or Xcode for emulators
 
 ---
 
@@ -13,6 +22,8 @@ A mobile app built with [**Expo Router**](https://expo.dev/router) and styled us
 | **React Native**      | Framework for building native apps with React        |
 | **TypeScript**        | Strongly typed JavaScript for better tooling         |
 | **Tailwind CSS RN**   | Utility-first styling for React Native components    |
+| **react-native-maps** | Native maps for React Native                         |
+| **react-native-svg**  | SVG support for React Native                         |
 
 ---
 
@@ -24,13 +35,15 @@ calisthenics-explorer/
 │   ├── _layout.tsx         # Root layout (TailwindProvider)
 │   ├── (tabs)/             # Tab-based navigation
 │   │   ├── _layout.tsx     # Tabs layout
-│   │   ├── index.tsx       # Home
-│   │   ├── about.tsx       # About
-│   │   ├── contact.tsx     # Contact
-│   │   └── settings.tsx    # Settings
-│   └── +not-found.tsx      # 404 page
-├── components/             # UI components
-├── assets/                 # Fonts, images
+│   │   ├── index.tsx       # Map (Home)
+│   │   ├── profile.tsx     # Profile tab
+│   │   ├── favorites.tsx   # Favorites tab
+│   │   └── settings.tsx    # Settings tab
+│   ├── data/               # Static/sample data
+│   ├── services/           # API services (e.g. Overpass API)
+│   └── utils/              # Utility functions (e.g. clustering)
+├── assets/                 # Fonts, images, icons
+│   └── images/             # Marker and cluster icons (PNG/SVG)
 ├── tailwind.config.js      # Tailwind config
 ├── package.json
 └── ...
@@ -46,31 +59,7 @@ calisthenics-explorer/
 npm install
 ```
 
-### 2. **Install Tailwind CSS for React Native**
-
-```bash
-npm install tailwindcss-react-native
-npx tailwindcss-react-native init
-```
-
-### 3. **Configure Tailwind**
-
-In the root, create or update `tailwind.config.js`:
-
-```js
-module.exports = {
-  content: [
-    "./app/**/*.{js,jsx,ts,tsx}",
-    "./components/**/*.{js,jsx,ts,tsx}",
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-};
-```
-
-### 4. **Run the App**
+### 2. **Run the App**
 
 ```bash
 npx expo start
@@ -80,59 +69,73 @@ npx expo start
 
 ---
 
-## 🧪 Screens Included
+## 🔑 API Keys
 
-| Screen     | Path                 | Description                |
-|------------|----------------------|----------------------------|
-| **Home**   | `/`                  | Welcome screen             |
-| **About**  | `/about`             | Info about the app         |
-| **Contact**| `/contact`           | Contact information        |
-| **Settings**| `/settings`         | App configuration/settings |
-
-All styled using `className="..."` with Tailwind utility classes via `tailwindcss-react-native`.
+- This app uses OpenStreetMap (Overpass API) for park data (no API key required).
+- For Google Maps (if you want to use Google as the map provider), you may need to set up an API key in `app.json` or `app.config.js`. See [Expo Maps docs](https://docs.expo.dev/versions/latest/sdk/map-view/) for details.
 
 ---
 
-## ✨ Example Styling
+## 🖼️ Screenshots
 
-Example usage of Tailwind styling in a screen:
-
-```tsx
-import { View, Text } from 'react-native';
-import { styled } from 'tailwindcss-react-native';
-
-const Container = styled(View);
-const Title = styled(Text);
-
-export default function HomeScreen() {
-  return (
-    <Container className="flex-1 items-center justify-center bg-white">
-      <Title className="text-2xl font-bold text-blue-600">Welcome</Title>
-    </Container>
-  );
-}
-```
+> _Add screenshots of your app here for a better first impression!_
 
 ---
 
-## 🔄 Tips for Development
+## 🗺️ Main Features
 
-- Restart Expo server after Tailwind config changes:  
+- **Map with Calisthenics Parks**: Shows parks in the Netherlands using real-time data from OpenStreetMap (Overpass API).
+- **Clustering**: Nearby parks are grouped into clusters with a custom icon and a number overlay. If there are more than 10 clusters, they are merged into super-clusters for performance and clarity.
+- **Custom Icons**: Uses PNG icons for both individual parks and clusters (see `assets/images`).
+- **Tab Navigation**: Four main tabs (Map, Profile, Favorites, Settings).
+- **Responsive UI**: Styled with Tailwind CSS for React Native.
+
+---
+
+## 🧪 Tabs/Screens Included
+
+| Tab         | Path                  | Description                        |
+|-------------|-----------------------|-------------------------------------|
+| **Map**     | `/`                   | Main map with parks and clusters    |
+| **Profile** | `/profile`            | User profile (placeholder)          |
+| **Favorites**| `/favorites`         | Favorite parks (placeholder)        |
+| **Settings**| `/settings`           | App settings (placeholder)          |
+
+---
+
+## ⚡ Data & Clustering
+
+- **Real-time data**: Parks are fetched live from OpenStreetMap using the Overpass API, based on the current map region.
+- **Clustering**: Custom clustering logic ensures the map remains performant and readable, even with many parks.
+- **Custom icons**: Place your PNG icons in `assets/images` and reference them in the code with `require()`.
+
+---
+
+## 🛠️ Development Tips
+
+- Restart Expo server after config changes:
   ```bash
   npx expo start --clear
   ```
-
 - Tailwind classes update live with Fast Refresh.
+- For custom icons, place PNGs in `assets/images` and import with `require()`.
+- For SVG support, use `react-native-svg` and `react-native-svg-transformer` (if needed).
 
 ---
 
-## 🛠️ Future Plans
+## 🐞 Known Issues / Limitations
 
-- Add navigation icons
-- Integrate async storage and user data
-- Add custom fonts and themes
-- Connect backend or Firebase
-- Offline support
+- Some parks may be missing or incorrectly tagged in OpenStreetMap.
+- Clustering is grid-based and may not always perfectly group parks visually.
+- Large custom icons may be cropped due to React Native Maps marker limitations.
+- No authentication or persistent user data (yet).
+
+---
+
+## 🤝 Contributing & Support
+
+- Pull requests are welcome!
+- For questions, open an issue or contact Dirk van der Enden or Sil van Tiel.
 
 ---
 
