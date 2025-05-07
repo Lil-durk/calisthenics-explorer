@@ -1,4 +1,4 @@
-// app/_layout.tsx
+// app/_layout.tsx  
 import { Slot } from 'expo-router';
 import { TailwindProvider } from 'tailwindcss-react-native';
 
