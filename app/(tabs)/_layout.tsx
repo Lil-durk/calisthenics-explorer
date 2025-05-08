@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Tabs } from 'expo-router';
 import React from 'react';
@@ -10,19 +10,19 @@ export default function TabLayout() {
     <Tabs
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
-          let iconName: keyof typeof Ionicons.glyphMap;
+          let iconName: keyof typeof MaterialIcons.glyphMap;
 
           if (route.name === 'index') {
-            iconName = focused ? 'map' : 'map-outline';
-          } else if (route.name === 'profile') {
-            iconName = focused ? 'person' : 'person-outline';
-          } else if (route.name === 'favorites') {
-            iconName = focused ? 'heart' : 'heart-outline';
+            iconName = 'map';
+          } else if (route.name === 'workouts') {
+            iconName = 'sports-gymnastics';
+          } else if (route.name === 'community') {
+            iconName = 'groups';
           } else {
-            iconName = focused ? 'settings' : 'settings-outline';
+            iconName = 'person';
           }
 
-          return <Ionicons name={iconName} size={size} color={color} />;
+          return <MaterialIcons name={iconName} size={size} color={color} />;
         },
         tabBarActiveTintColor: '#007AFF',
         tabBarInactiveTintColor: 'gray',
@@ -36,23 +36,23 @@ export default function TabLayout() {
         }} 
       />
       <Tabs.Screen 
+        name="workouts" 
+        options={{ 
+          title: 'Workouts',
+          headerShown: false 
+        }} 
+      />
+      <Tabs.Screen 
+        name="community" 
+        options={{ 
+          title: 'Community',
+          headerShown: false 
+        }} 
+      />
+      <Tabs.Screen 
         name="profile" 
         options={{ 
           title: 'Profile',
-          headerShown: false 
-        }} 
-      />
-      <Tabs.Screen 
-        name="favorites" 
-        options={{ 
-          title: 'Favorites',
-          headerShown: false 
-        }} 
-      />
-      <Tabs.Screen 
-        name="settings" 
-        options={{ 
-          title: 'Settings',
           headerShown: false 
         }} 
       />
