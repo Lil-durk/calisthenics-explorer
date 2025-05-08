@@ -14,7 +14,7 @@ export default function TabLayout() {
 
           if (route.name === 'index') {
             iconName = 'map';
-          } else if (route.name === 'workouts') {
+          } else if (route.name === 'workout') {
             iconName = 'sports-gymnastics';
           } else if (route.name === 'community') {
             iconName = 'groups';
@@ -36,7 +36,7 @@ export default function TabLayout() {
         }} 
       />
       <Tabs.Screen 
-        name="workouts" 
+        name="workout" 
         options={{ 
           title: 'Workouts',
           headerShown: false 
