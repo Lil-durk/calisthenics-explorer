@@ -88,12 +88,12 @@ npx expo start
 
 ## 🧪 Tabs/Screens Included
 
-| Tab         | Path                  | Description                        |
+| Tab         | Path                  | Description                         |
 |-------------|-----------------------|-------------------------------------|
 | **Map**     | `/`                   | Main map with parks and clusters    |
 | **Profile** | `/profile`            | User profile (placeholder)          |
-| **Favorites**| `/favorites`         | Favorite parks (placeholder)        |
-| **Settings**| `/settings`           | App settings (placeholder)          |
+| **Workout** | `/workout`            | Workout list (placeholder)          |
+| **Socials** | `/social`             | Community page to share experience  |
 
 ---
 
