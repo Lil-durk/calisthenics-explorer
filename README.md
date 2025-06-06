@@ -76,12 +76,6 @@ npx expo start
 
 ---
 
-## 🖼️ Screenshots
-
-> _Add screenshots of your app here for a better first impression!_
-
----
-
 ## 🗺️ Main Features
 
 - **Map with Calisthenics Parks**: Shows parks in the Netherlands using real-time data from OpenStreetMap (Overpass API).
@@ -132,9 +126,8 @@ npx expo start
 
 ---
 
-## 🤝 Contributing & Support
+## 🤝 Support
 
-- Pull requests are welcome!
 - For questions, open an issue or contact Dirk van der Enden or Sil van Tiel.
 
 ---
@@ -142,7 +135,6 @@ npx expo start
 ## 🧑‍💻 Authors
 
 Developed by [Dirk van der Enden & Sil van Tiel]  
-Feel free to fork and contribute!
 
 ---
 
